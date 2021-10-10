@@ -1,0 +1,93 @@
+from math import *
+
+
+# PROBLEMA 1.
+def get_largest_prime_below(n):
+
+    nr_prim = 0
+
+    if n <= 2:
+        return None
+    else:
+        for i in range(2, n):
+            q = 0
+            for j in range(2, floor(i/2)+1):
+                if i%j == 0:
+                    q = q+1
+            if q==0:
+                nr_prim=i
+
+    return nr_prim
+
+def test_get_largest_prime_below():
+    assert get_largest_prime_below(67) == 61
+    assert get_largest_prime_below(15) == 13
+    assert get_largest_prime_below(9) == 7
+
+test_get_largest_prime_below()
+
+
+
+# PROBLEMA 10.
+
+def get_n_choose_k(n, k):
+    if n < k:
+        return False
+    else:
+        i = 1
+        j = 1
+        x = 1
+        n_factorial = 1
+        k_factorial = 1
+        n_minus_k_factorial = 1
+        combinari_n_luate_cate_k = 1
+
+        while i < n:
+            n_factorial = n_factorial * (i + 1)
+            i = i + 1
+
+        while j < k:
+            k_factorial = k_factorial * (j + 1)
+            j = j + 1
+
+        while x < n - k:
+            n_minus_k_factorial = n_minus_k_factorial * (x + 1)
+            x = x + 1
+
+        combinari_n_luate_cate_k = n_factorial / ( k_factorial * n_minus_k_factorial )
+
+        return combinari_n_luate_cate_k
+
+
+def test_get_n_choose_k():
+    assert get_n_choose_k(5, 2) == 10
+    assert get_n_choose_k(4, 1) == 4
+    assert get_n_choose_k(6, 3) == 20
+
+
+test_get_n_choose_k()
+
+
+def main():
+    optiune = """
+    Introduceti cifra corespunzatoare optiunii pe care o alegeti:
+    1. Găsește ultimul număr prim mai mic decât un număr dat.
+    2. Calculează combinări de n luate câte k (n și k date).
+    3. Iesire.
+    """
+
+    a = input(optiune)
+    while a != "3":
+        if a=="1":
+            test_get_largest_prime_below()
+        elif a=="2":
+            test_get_n_choose_k()
+        else:
+            print("Optiune gresita. Alegeti din nou optiunea.")
+        a = input(optiune)
+
+
+main()
+
+
+
