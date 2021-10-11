@@ -24,9 +24,6 @@ def test_get_largest_prime_below():
     assert get_largest_prime_below(15) == 13
     assert get_largest_prime_below(9) == 7
 
-test_get_largest_prime_below()
-
-
 
 # PROBLEMA 10.
 
@@ -65,7 +62,22 @@ def test_get_n_choose_k():
     assert get_n_choose_k(6, 3) == 20
 
 
-test_get_n_choose_k()
+
+# PROBLEMA 5.
+
+def is_palindrome(n):
+    palindrom = 0
+    while n != 0:
+        a = n
+        palindrom= palindrom * 10 + (a % 10)
+        a = floor(a/10)
+    if palindrom == n:
+        return True
+
+def test_is_palindrome():
+    assert is_palindrome(1221) == True
+    assert is_palindrome(123) == False
+    assert is_palindrome (45454) == True
 
 
 def main():
@@ -73,21 +85,26 @@ def main():
     Introduceti cifra corespunzatoare optiunii pe care o alegeti:
     1. Găsește ultimul număr prim mai mic decât un număr dat.
     2. Calculează combinări de n luate câte k (n și k date).
-    3. Iesire.
+    3. Verifica daca numarul dat este palindrom.
+    4. Iesire.
     """
 
     a = input(optiune)
-    while a != "3":
+    while a != "4":
         if a=="1":
             test_get_largest_prime_below()
         elif a=="2":
             test_get_n_choose_k()
+        elif a=="3":
+            test_is_palindrome()
         else:
             print("Optiune gresita. Alegeti din nou optiunea.")
         a = input(optiune)
 
 
 main()
+
+
 
 
 
